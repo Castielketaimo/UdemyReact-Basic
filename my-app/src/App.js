@@ -12,17 +12,12 @@ class App extends Component {
     otherStates: 'some states',
     showPersons: false
   }
-  //handler means its an event handler
-  switchNameHandler = (newName) => {
-    //console.log('was clicked')
-    //DON'T DOD THIS: this.state.persons[0].name = 'LovelyBags';
-    this.setState({
-      persons: [
-        { name: newName, age: 10 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 26 }
-      ]
-    })
+
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons})
   }
 
   nameChangedHandler = (event)=> {
@@ -53,21 +48,17 @@ class App extends Component {
     if(this.state.showPersons){
       persons = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age} />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, 'Nah')}
-            changed={this.nameChangedHandler}>
-            My Hobbie is : Racing</Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age} />
+          {this.state.persons.map((person, index) => {
+            return <Person 
+                    click={() => this.deletePersonHandler(index)}
+                    name = {person.name} 
+                    age ={person.age}
+                     />
+          })}
         </div>
       );
     }
+
     return (
       //can't use resolve word for js such as class since its jsx not html
       //can only have a single div or element 

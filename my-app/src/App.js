@@ -5,9 +5,9 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Max', age: 28},
-      { name: 'Manu', age: 29},
-      { name: 'Stephanie', age: 26 }
+      { id: '1',name: 'Max', age: 28},
+      { id: '2',name: 'Manu', age: 29},
+      { id: '3',name: 'Stephanie', age: 26 }
     ],
     otherStates: 'some states',
     showPersons: false
@@ -15,7 +15,10 @@ class App extends Component {
 
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //calling slice so we can make a new element instead using reference
+    //const persons = this.state.persons.slice();
+    //same as above, es6 way, newer and better
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons})
   }
@@ -53,7 +56,7 @@ class App extends Component {
                     click={() => this.deletePersonHandler(index)}
                     name = {person.name} 
                     age ={person.age}
-                     />
+                    key={person.key} />
           })}
         </div>
       );

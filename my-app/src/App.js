@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -92,14 +92,16 @@ class App extends Component {
     return (
       //can't use resolve word for js such as class since its jsx not html
       //can only have a single div or element 
-      <div className="App">
-        <h1>Hi Its my first app</h1>
-        <p className={classes.join(' ')}>Stupid as fuck</p>
-        <button 
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi Its my first app</h1>
+          <p className={classes.join(' ')}>Stupid as fuck</p>
+          <button 
+            style={style}
+            onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
     //return React.createElement('div', {className: 'App'},React.createElement('h1', null, 'does this works?'));
   }

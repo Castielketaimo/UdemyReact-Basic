@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 // import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
@@ -81,19 +81,19 @@ class App extends Component {
       // }
     }
 
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(assignedClasses.red );
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(assignedClasses.bold);
     }
 
     return (
       //can't use resolve word for js such as class since its jsx not html
       //can only have a single div or element 
       // <StyleRoot>
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi Its my first app</h1>
           <p className={classes.join(' ')}>Stupid as fuck</p>
           <button 
@@ -107,4 +107,5 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+// export default Radium(App);
+export default App;
